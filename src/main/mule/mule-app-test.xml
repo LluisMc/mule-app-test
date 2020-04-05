@@ -10,15 +10,11 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	</http:listener-config>
 	<flow name="mule-app-testFlow" doc:id="9e75230d-c1b6-4b62-843b-5e2e43619c25" >
 		<http:listener doc:name="Listener" doc:id="b4d31f6d-8077-4552-85e8-9cf2df52e4d1" config-ref="HTTP_Listener_config" path="/api/ip"/>
-		<ee:transform doc:name="Transform Message" doc:id="9050d8cf-bcb1-4282-bac9-55259409c7e5" >
-			<ee:message >
-				<ee:set-payload ><![CDATA[%dw 2.0
+		<set-payload value="#[%dw 2.0
 output application/json
 ---
 {
 	ip: server.ip
-}]]></ee:set-payload>
-			</ee:message>
-		</ee:transform>
+}]" doc:name="Set Payload" doc:id="0832b2de-4020-4aa5-abb5-7150a667bcd9" />
 	</flow>
 </mule>
